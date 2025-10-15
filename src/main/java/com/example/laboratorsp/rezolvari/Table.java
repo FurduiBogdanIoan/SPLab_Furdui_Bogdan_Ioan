@@ -1,9 +1,26 @@
 package com.example.laboratorsp.rezolvari;
 
-public class Table extends Element {
+public class Table implements Element {
+
+    private String title;
+
+    public Table(String title) {
+        this.title = title;
+    }
 
     @Override
     public void print() {
-        System.out.println("Table content printed...");
+        System.out.println("Table with title: " + title);
+    }
+
+    @Override
+    public void add(Element element) { }
+
+    @Override
+    public void remove(Element element) { }
+
+    @Override
+    public Element get(int index) {
+        return null;
     }
 }
