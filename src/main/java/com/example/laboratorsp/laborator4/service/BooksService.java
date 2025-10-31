@@ -1,42 +1,43 @@
 package com.example.laboratorsp.laborator4.service;
 
+
 import com.example.laboratorsp.laborator4.model.Book;
+import com.example.laboratorsp.laborator4.repository.BooksRepository;
 import org.springframework.stereotype.Service;
-import java.util.*;
+
+import java.util.List;
 
 @Service
 public class BooksService {
-    private final Map<Long, Book> books = new HashMap<>();
-    private long counter = 1;
 
-    public BooksService() {
-        books.put(counter, new Book(counter++, "Noapte buna, copii!", "Radu Pavel Gheo"));
-        books.put(counter, new Book(counter++, "Morometii", "Marin Preda"));
-        books.put(counter, new Book(counter++, "Amintiri din copilarie", "Ion Creanga"));
+    private final BooksRepository booksRepository;
+
+    public BooksService(BooksRepository booksRepository) {
+        this.booksRepository = booksRepository;
     }
 
     public List<Book> getAllBooks() {
-        return new ArrayList<>(books.values());
+        return booksRepository.findAll();
     }
 
     public Book getBookById(Long id) {
-        return books.get(id);
+        return booksRepository.findById(id).orElse(null);
     }
 
     public Book createBook(Book book) {
-        book.setId(counter++);
-        books.put(book.getId(), book);
-        return book;
+        return booksRepository.save(book);
     }
 
     public Book updateBook(Long id, Book book) {
-        if (!books.containsKey(id)) return null;
+        Book existing = getBookById(id);
+        if (existing == null) return null;
         book.setId(id);
-        books.put(id, book);
-        return book;
+        return booksRepository.save(book);
     }
 
     public boolean deleteBook(Long id) {
-        return books.remove(id) != null;
+        if (!booksRepository.existsById(id)) return false;
+        booksRepository.deleteById(id);
+        return true;
     }
 }

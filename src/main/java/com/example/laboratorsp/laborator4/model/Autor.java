@@ -1,21 +1,18 @@
 package com.example.laboratorsp.laborator4.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
+import lombok.*;
 
+@Entity
+@Table(name = "authors")
 @Data
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
-@Entity
-@Table(name = "books")
-public class Book {
+public class Autor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String author;
+    private String name;
 }

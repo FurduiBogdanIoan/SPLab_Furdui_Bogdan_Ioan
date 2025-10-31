@@ -3,9 +3,14 @@ package com.example.laboratorsp;
 import com.example.laboratorsp.laborator3.ClientComponent;
 import com.example.laboratorsp.laborator3.SingletonComponent;
 import com.example.laboratorsp.laborator3.TransientComponent;
+import com.example.laboratorsp.laborator4.model.Book;
+import com.example.laboratorsp.laborator4.repository.BooksRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import com.example.laboratorsp.laborator4.repository.BooksRepository;
 
 @SpringBootApplication
 public class LaboratorSpApplication {
@@ -14,6 +19,25 @@ public class LaboratorSpApplication {
 
         SpringApplication.run(LaboratorSpApplication.class, args);
         //http://localhost:8080/books pentru a vedea datele transmise
+
+
+        @Bean
+        CommandLineRunner initDatabase(BooksRepository booksRepository) {
+            return args -> {
+                if (booksRepository.count() == 0) { // doar dacă e goală baza
+                    booksRepository.save(new Book(null, "Ion", "Liviu Rebreanu"));
+                    booksRepository.save(new Book(null, "Moromeții", "Marin Preda"));
+                    booksRepository.save(new Book(null, "Baltagul", "Mihail Sadoveanu"));
+                    booksRepository.save(new Book(null, "Amintiri din copilărie", "Ion Creangă"));
+                }
+
+                booksRepository.findAll().forEach(System.out::println);
+            };
+        }
+
+
+
+
 
         // laborator 3
         //
