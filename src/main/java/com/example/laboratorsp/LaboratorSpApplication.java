@@ -21,20 +21,6 @@ public class LaboratorSpApplication {
         //http://localhost:8080/books pentru a vedea datele transmise
 
 
-        @Bean
-        CommandLineRunner initDatabase(BooksRepository booksRepository) {
-            return args -> {
-                if (booksRepository.count() == 0) { // doar dacă e goală baza
-                    booksRepository.save(new Book(null, "Ion", "Liviu Rebreanu"));
-                    booksRepository.save(new Book(null, "Moromeții", "Marin Preda"));
-                    booksRepository.save(new Book(null, "Baltagul", "Mihail Sadoveanu"));
-                    booksRepository.save(new Book(null, "Amintiri din copilărie", "Ion Creangă"));
-                }
-
-                booksRepository.findAll().forEach(System.out::println);
-            };
-        }
-
 
 
 
@@ -80,5 +66,21 @@ public class LaboratorSpApplication {
         // laborator 3 end
 
     }
+
+    @Bean
+    CommandLineRunner initDatabase(BooksRepository booksRepository) {
+        return args -> {
+            if (booksRepository.count() == 0) {
+                booksRepository.save(new Book(null, "Ion", "Liviu Rebreanu"));
+                booksRepository.save(new Book(null, "Moromeții", "Marin Preda"));
+                booksRepository.save(new Book(null, "Baltagul", "Mihail Sadoveanu"));
+                booksRepository.save(new Book(null, "Amintiri din copilărie", "Ion Creangă"));
+            }
+
+            booksRepository.findAll().forEach(System.out::println);
+        };
+    }
+
+
 
 }

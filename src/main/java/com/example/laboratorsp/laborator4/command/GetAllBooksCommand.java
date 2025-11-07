@@ -12,6 +12,6 @@ public class GetAllBooksCommand implements Command<List<Book>> {
 
     @Override
     public List<Book> execute() {
-        return context.getBooksService().getAllBooks();
+        return context.getBooksRepository().findAll();
     }
 }

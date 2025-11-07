@@ -13,6 +13,6 @@ public class GetBookByIdCommand implements Command<Book> {
 
     @Override
     public Book execute() {
-        return context.getBooksService().getBookById(id);
+        return context.getBooksRepository().findById(id).orElse(null);
     }
 }

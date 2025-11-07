@@ -15,6 +15,10 @@ public class UpdateBookCommand implements Command<Book> {
 
     @Override
     public Book execute() {
-        return context.getBooksService().updateBook(id, book);
+        if (!context.getBooksRepository().existsById(id)) {
+            return null;
+        }
+        book.setId(id);
+        return context.getBooksRepository().save(book);
     }
 }
