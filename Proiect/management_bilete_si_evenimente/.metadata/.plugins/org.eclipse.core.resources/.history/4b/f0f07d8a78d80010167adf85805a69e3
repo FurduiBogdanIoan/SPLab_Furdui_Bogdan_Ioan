@@ -1,0 +1,48 @@
+package com.example.bilete.controller;
+
+import org.springframework.web.bind.annotation.*;
+import com.example.bilete.model.Plata;
+import com.example.bilete.service.PlataService;
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/plati")
+@CrossOrigin
+public class PlataController {
+
+    private final PlataService service;
+
+    public PlataController(PlataService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    public List<Plata> getAll() {
+        return service.getAll();
+    }
+
+    @GetMapping("/comanda/{idComanda}")
+    public Optional<Plata> getByComanda(@PathVariable Long idComanda) {
+        // aici poți integra direct un service care caută plata după comanda
+        return service.getAll().stream()
+                .filter(p -> p.getComanda().getId().equals(idComanda))
+                .findFirst();
+    }
+
+    @PostMapping
+    public Plata create(@RequestBody Plata plata) {
+        return service.save(plata);
+    }
+
+    @PutMapping("/{id}")
+    public Plata update(@PathVariable Long id, @RequestBody Plata plata) {
+        plata.setId(id);
+        return service.save(plata);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
+}

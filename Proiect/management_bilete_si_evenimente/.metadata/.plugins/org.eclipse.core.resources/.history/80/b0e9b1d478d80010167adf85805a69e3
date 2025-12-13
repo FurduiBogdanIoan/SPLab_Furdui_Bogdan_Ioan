@@ -1,0 +1,36 @@
+package com.example.bilete.model;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Bilet {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String codUnic; 
+
+    @ManyToOne
+    private TipBilet tipBilet;
+
+    @ManyToOne
+    private Comanda comanda;
+
+    private boolean validat = false;
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getCodUnic() { return codUnic; }
+    public void setCodUnic(String codUnic) { this.codUnic = codUnic; }
+
+    public TipBilet getTipBilet() { return tipBilet; }
+    public void setTipBilet(TipBilet tipBilet) { this.tipBilet = tipBilet; }
+
+    public Comanda getComanda() { return comanda; }
+    public void setComanda(Comanda comanda) { this.comanda = comanda; }
+
+    public boolean isValidat() { return validat; }
+    public void setValidat(boolean validat) { this.validat = validat; }
+}

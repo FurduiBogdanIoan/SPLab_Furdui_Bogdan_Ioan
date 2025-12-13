@@ -1,0 +1,5 @@
+Acest proiect reprezinta o aplicatie backend dezvoltata in Java folosind framework-ul Spring Boot, care expune un RESTful API pentru gestionarea unei platforme de evenimente si bilete. Aplicatia permite administrarea datelor principale, precum evenimente, utilizatori, bilete si comenzi, prin operatii de tip create, read, update, delete.
+
+Datele sunt persistate intr-o baza de date relationala (MySQL), folosind Spring Data JPA si Hibernate pentru maparea obiect-relationala. Proiectul este structurat pe straturi logice (controller, service, repository), respectand principiile arhitecturii MVC.
+
+Aplicatia include mecanisme de securitate bazate pe Spring Security si JWT, care permit autentificarea utilizatorilor si protejarea endpointurilor API. De asemenea, proiectul suporta incarcarea si gestionarea imaginilor pentru evenimente, acestea fiind salvate in sistemul de fisiere local, iar in baza de date este stocata doar calea catre fisier.
