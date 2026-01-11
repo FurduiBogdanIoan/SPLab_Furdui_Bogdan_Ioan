@@ -1,0 +1,30 @@
+package com.magazin.controller;
+
+import com.magazin.model.Comanda;
+import com.magazin.repository.ComandaRepository;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/admin/comenzi")
+@CrossOrigin(origins = "http://localhost:3000")
+public class AdminComandaController {
+
+    private final ComandaRepository comandaRepository;
+
+    public AdminComandaController(ComandaRepository comandaRepository) {
+        this.comandaRepository = comandaRepository;
+    }
+
+    @GetMapping
+    public List<Comanda> getAll() {
+        return comandaRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Comanda getById(@PathVariable Long id) {
+        return comandaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Comanda nu există"));
+    }
+}
