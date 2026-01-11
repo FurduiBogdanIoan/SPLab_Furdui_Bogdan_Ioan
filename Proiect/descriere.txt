@@ -1,5 +1,22 @@
-Acest proiect reprezinta o aplicatie backend dezvoltata in Java folosind framework-ul Spring Boot, care expune un RESTful API pentru gestionarea unei platforme de evenimente si bilete. Aplicatia permite administrarea datelor principale, precum evenimente, utilizatori, bilete si comenzi, prin operatii de tip create, read, update, delete.
+Acest proiect reprezintă o aplicație backend dezvoltată în Java, folosind framework-ul Spring Boot, destinată gestionării unui magazin online.
 
-Datele sunt persistate intr-o baza de date relationala (MySQL), folosind Spring Data JPA si Hibernate pentru maparea obiect-relationala. Proiectul este structurat pe straturi logice (controller, service, repository), respectand principiile arhitecturii MVC.
+Aplicația expune un RESTful API care permite administrarea principalelor entități ale sistemului, precum: produse, utilizatori, coș de cumpărături, comenzi și recomandări. Pentru fiecare entitate sunt implementate operații de tip create, read, update, delete (CRUD).
 
-Aplicatia include mecanisme de securitate bazate pe Spring Security si JWT, care permit autentificarea utilizatorilor si protejarea endpointurilor API. De asemenea, proiectul suporta incarcarea si gestionarea imaginilor pentru evenimente, acestea fiind salvate in sistemul de fisiere local, iar in baza de date este stocata doar calea catre fisier.
+Datele sunt persistate într-o bază de date relațională, utilizând Spring Data JPA și Hibernate pentru maparea obiect-relatională.
+
+Proiectul este organizat pe straturi logice, respectând arhitectura MVC:
+Controller – gestionează cererile HTTP
+Service – conține logica aplicației
+Repository – realizează accesul la baza de date
+Model – definește entitățile aplicației
+
+Aplicația include un sistem de securitate bazat pe Spring Security, cu autentificare și roluri de utilizator (admin și utilizator normal), permițând protejarea endpointurilor și controlul accesului.
+
+Sunt implementate funcționalități precum:
+autentificare și înregistrare utilizatori,
+administrare produse,
+gestionare coș de cumpărături,
+plasare și administrare comenzi,
+recomandări de produse.
+
+Proiectul poate fi utilizat ca backend pentru o aplicație web sau mobilă de tip e-commerce și reprezintă o bază solidă pentru dezvoltarea unei platforme comerciale complete.
