@@ -1,5 +1,0 @@
-package com.magazin.security;
-
-public class JwtAuthFilter {
-
-}

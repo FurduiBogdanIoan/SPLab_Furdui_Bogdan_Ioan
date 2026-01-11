@@ -1,6 +1,0 @@
-package com.magazin.model;
-
-public class Rol {
-	USER,
-    ADMIN
-}
